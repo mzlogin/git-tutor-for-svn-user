@@ -1,0 +1,16 @@
+#!/bin/sh
+
+git fetch
+
+HEAD=$(git rev-parse HEAD)
+FETCH_HEAD=$(git rev-parse FETCH_HEAD)
+
+if [ "$FETCH_HEAD" = "$HEAD" ];
+then
+    echo "Pre-commit check passed"
+    exit 0
+fi
+
+echo "Error: you need to update from remote first"
+
+exit 1
